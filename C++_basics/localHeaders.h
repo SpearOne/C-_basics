@@ -3,6 +3,9 @@
 #define HEADERS_H
 
 
+#include <string>
+// using namespace std;
+
 
 
 // declare book struct data structure
