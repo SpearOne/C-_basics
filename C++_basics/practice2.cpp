@@ -111,7 +111,6 @@ void addBook(Books &rBook, int id, const char *title, int price) {
 }
 
 /** updatePrice - updating book price
- * Description: 
  * @param: reference to the book object in Books struct
  * @param: book id
  * @param: new choosen price

@@ -2,7 +2,10 @@
 #ifndef HEADERS_H
 #define HEADERS_H
 
-// declare struct data structure
+
+
+
+// declare book struct data structure
 struct Books
 {
     char book_title[20];
@@ -30,6 +33,14 @@ void displaybooksArray(Books *booksArray, int size);
 // ------------------------------------------- //
 
 
+struct Students {
+    std::string name;
+    float grade;
+};
+
+
+// void sorts_students(Students grades[], int size);
+void sorts_students(float *grades, int size);
 
 #endif
 
