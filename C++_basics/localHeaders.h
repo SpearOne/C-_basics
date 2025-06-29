@@ -43,7 +43,7 @@ struct Students {
 
 
 // void sorts_students(Students grades[], int size);
-void sorts_students(std::string *names, float *grades, int size);
+void sorts_students(Students* arr, int size);
 float searchByNames(std::string *names, float *grades, std::string name);
 
 
