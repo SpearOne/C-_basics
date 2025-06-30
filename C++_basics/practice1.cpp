@@ -1,5 +1,5 @@
 /*
-    this is a serie of exercices and answers to practice C++ concepts, 
+    this is a serie of exercices 1, 2, 3. and their answers to practice C++ concepts, 
     - reverse array 
     - rotate array
     - swap values (using pass by pointer parametre)
