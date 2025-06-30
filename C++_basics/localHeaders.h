@@ -35,17 +35,17 @@ void displayAllBooks(int *bookIds[], char *bookTitle[], int *bookPrice[]);
 void displaybooksArray(Books *booksArray, int size);
 // ------------------------------------------- //
 
-
 struct Students {
     std::string name;
     float grade;
 };
 
-
-// void sorts_students(Students grades[], int size);
 void sorts_students(Students* arr, int size);
 float searchByNames(Students *arr, std::string name);
 void printStudents(Students *studentData, int size);
 
+
+// ------------------------------------------
+int Factoial(int &number);
 #endif
 
