@@ -12,61 +12,47 @@
 
 using namespace std;
 
-
 int main() {
     
-    // ask user to add how many students then their names and grades
-    int numberOfStudents; // size of elemnt in the struct
+    int numberOfStudents; // to store students number
+    // ask user to add how many students
     cout << "Enter number of studets: ";
+    // read data
     cin >> numberOfStudents;
 
     // array to store data
     Students *StudentArray = new Students[numberOfStudents]; // dinamically allocate memory of n Students array
 
-    
+    // read user input data  
     int i = 0;
     while (i < numberOfStudents)
-    {
-        
-        cout << "Enter Student name and grade: ";
-        
-        // cout << "Enter Student " << i + 1 << " grade:";
+    {    
+        cout << "Enter Student name and grade(ex: john 13.4): ";
         cin >> StudentArray[i].name; // read student name
         cin >> StudentArray[i].grade;  // read student grade     
         i++;
     }
     
+    // print students data
+    printStudents(StudentArray, numberOfStudents);
 
-    // print array elements
-    // for (i = 0; i < numberOfStudents; i++) {
-
-    //     cout << "Student " << i + 1 << ": " << StudentArray[i].name << ", " << StudentArray[i].grade << endl;    
-    // }
-    
-    
     // start using sort algorithm in sort_students function
-    cout << "we using sort now" << endl;
-    
-    // float &referG = StudentArray[0].grade; // create reference to the first element in the array
-    // string &referN = StudentArray[0].name;
+    cout << "--------------------\nwe using sort now" << endl;
 
-    sorts_students(StudentArray, numberOfStudents); // call the sort function 
-                         
+    // call sort function and give arguments
+    sorts_students(StudentArray, numberOfStudents);                     
     
-    // print the element after sort
-    for (i = 0; i < numberOfStudents; i++) {
+    // print students data sorted 
+    printStudents(StudentArray, numberOfStudents);
 
-        cout << "Student " << i + 1 << ": " << StudentArray[i].name << ", " << StudentArray[i].grade << endl;    
-    }
-    
 
     // ask user for name to search
-    // string name;
-    // cout << "enter the name: " << endl;
-    // cin >> name;
+    string name;
+    cout << "enter a name: " << endl;
+    cin >> name;
 
     // use search function
-    // searchByNames(&referN, &referG, name);    
+    searchByNames(StudentArray, name);    
     
     // free the allocated memory
     delete StudentArray;
@@ -76,15 +62,14 @@ int main() {
 
 /**
  * sorts_students - sorts students by grade (ascending).
- * @param: pointer to first element in array (names)
- * @param: pointer to first element in array (grades)
+ * @param: pointer to student struct 
  * @param: number of students
  * @return:  (void) 
  *      usecase: sort_student(array of names, array of grades, size)
  */
 void sorts_students(Students* arr, int size) { // pass pointer to the first element in the array
     
-    /*
+    /* fast explain - sort algorithm
     // sort values ascending: (using sort algorithm)
         - bubble sort: repeatedly swaps adjacent items if they're in wrong order
         - insertion sort: builds the sorted list one item at a time
@@ -93,48 +78,54 @@ void sorts_students(Students* arr, int size) { // pass pointer to the first elem
                           repeating for each position
      */
     
-     
      // sort using bubble sort algorithm
     for (int i = 0; i < size - 1; i++) // first indicateur
     {
-        for (int j = 0; j < size - i - 1; j++) // second indicateur
-        {
+        for (int j = 0; j < size - i - 1; j++) {
+            
             if (arr[j].grade > arr[j + 1].grade) { // if the first values greater then the second swap
                 
                 float tempG = arr[j].grade;
-                string tempN = arr[i].name;
+                string tempN = arr[j].name;
                 
                 arr[j].grade = arr[j + 1].grade;
-                arr[i].name = arr[i + 1].name;
+                arr[j].name = arr[j + 1].name;
                 
                 arr[j + 1].grade = tempG;
-                arr[j + 1].name = tempN; // 
+                arr[j + 1].name = tempN;
             }
-        } 
 
+        }
     }
 }
+
+
 /** searchByNames - search by name and return grade
- * @param: pointer to first element in array (names)
- * @param: pointer to first element in array (grades)
+ * @param: pointer to student struct 
  * @param: name of student to search
  * @return: corresonding grade if success
  *          "Not found" (-1) if fail 
- *      usecase: sort_student(array of names, array of grades, name to search)
+ *      usecase: sort_student(struct pointer, name to search)
  */
-float searchByNames(string *names, float *grades, string name) {
+float searchByNames(Students *arr, string name) {
     
-    float grade; // the corespond grade 
-    // hold the name entred
-    for (int i = 0; i < 6; i++) { // loop trought names the array
-        if (name == names[i]) { // if name founded in the array
-            // grade = grades[i]; // put his corresponding grade value in grade var
-            cout << "Founded name: " << names[i] << endl << "his grade: " << grades[i]; // print name and grade founded
-            return grades[i]; // return gra
+    // loop trought names into student struct
+    for (int i = 0; i < 6; i++) { 
+        if (name == arr[i].name) { // if founded
+            cout << "name founded: " << arr[i].name << " - " << "his grade: " << arr[i].grade; // print name and grade founded
+            return arr[i].grade; // return grade
         }
     }
-    if (name != *names) { // if name not founded
+    if (name != arr->name) { // if name not founded
         cout << "not found"; 
     }
     return -1;
+}
+
+
+void printStudents(Students *studentData, int size) {
+    cout << "-------------------\nPrinting data...\n";
+    for (int i = 0; i < size; i++) {
+        cout << studentData[i].name << ", " << studentData[i].grade << endl; 
+    }
 }
