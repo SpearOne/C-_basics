@@ -47,5 +47,24 @@ void printStudents(Students *studentData, int size);
 
 // ------------------------------------------
 int Factoial(int &number);
+// ------------------------------------
+void reverseArray(int *arr, int size);
+// --------------------------------
+void countDuplicate(int *arr, int size);
+// ----------------------------------
+struct Rectangle
+{
+    int length;
+    int width;
+};
+
+int calculateAreaAndPerimetre(Rectangle rectangle1);
+
+
+
+
+
+
+
 #endif
 
